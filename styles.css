@@ -1,0 +1,61 @@
+@font-face
+{
+  font-family: 'BonvenoCF';
+  font-weight: light;
+  font-style: normal;
+}
+
+@font-face
+{
+  font-family: 'Neocyr';
+  font-weight: normal;
+  font-style: normal;
+} 
+
+html, body
+{
+	margin: 0px;
+	border: 0px;
+	width: 100%;
+}
+
+h1
+{
+  font-family: 'Neocyr';
+  font-size: 72pt;
+  font-weight: normal;
+  font-style: normal;
+  text-align: left;
+}
+
+h2
+{
+  font-family: 'BonvenoCF';
+  font-size: 14pt;
+  color: #686868;
+  text-align: left;
+  padding-left: 45%;
+}
+
+h3
+{
+  font-family: 'BonvenoCF';
+  font-size: 16pt;
+  color: white;
+  text-align: center;
+}
+
+h4
+{
+  font-family: 'BonvenoCF';
+  font-size: 14pt;
+  color: #686868;
+  text-align: center;
+}
+
+p
+{
+	font-family: 'BonvenoCF';
+	padding-left: 20%;
+	padding-right: 20%;
+}

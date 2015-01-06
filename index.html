@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pebblefish</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/benveno" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/neocyr" rel="stylesheet" type="text/css/"/>
+    <link rel="stylesheet" href="styles.css" type="text/css"/>
+	<script src="sylvester.js" type="text/javascript"></script>
+	<script src="glUtils.js" type="text/javascript"></script>
+	<script src="graphics.js" type="text/javascript"></script>
+	<script id="fshader" type="x-shader/x-fragment">
+		varying lowp vec4 vColor;
+		
+		void main(void) {
+			gl_FragColor = vColor;
+		}
+	</script>
+	<script id="vshader" type="x-shader/x-vertex">
+		attribute vec3 aVertexPosition;
+		
+		uniform float t;
+		uniform mat4 uPMatrix;
+		
+		varying lowp vec4 vColor;
+		
+		void main(void) {
+			vec3 pos = aVertexPosition;
+			pos.y = sin(3.164328 * pos.x + 2.1 * t) + sin(2.2583592 * pos.x - t) + sin(3.5912369 * pos.z + t) + sin(1.67123859 * pos.z + t);
+			pos.y = pos.y / 60.0;
+			gl_Position = uPMatrix * vec4(pos, 1.0);
+			vColor = vec4(0.0, 0.0, 0.0, 90.0 * pos.y * pos.y + 0.17);
+		}
+	</script>
+  </head>
+
+  <body onload="start()">
+    <h1>
+		<img src="images/icon_alpha.png" height="150px" style="float:left;padding-left:25%;padding-right:40px;vertical-align:text-bottom;"/>
+		Pebblefish
+	</h1>
+    <canvas id="glcanvas" height="200"></canvas>
+	<p>Lorem ipsum dolor sit amet.</p>
+  </body>
+
+</html>
