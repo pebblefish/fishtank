@@ -3,12 +3,12 @@
   <head>
     <title>Pebblefish</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/benveno" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/neocyr" rel="stylesheet" type="text/css/"/>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/neocyr" rel="stylesheet" type="text/css/"/>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/proza-libre" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="styles.css" type="text/css"/>
-	<script src="sylvester.js" type="text/javascript"></script>
-	<script src="glUtils.js" type="text/javascript"></script>
-	<script src="graphics.js" type="text/javascript"></script>
+	<script src="scripts/sylvester.js" type="text/javascript"></script>
+	<script src="scripts/glUtils.js" type="text/javascript"></script>
+	<script src="scripts/graphics.js" type="text/javascript"></script>
 	<script id="fshader" type="x-shader/x-fragment">
 		varying lowp vec4 vColor;
 		
@@ -21,26 +21,26 @@
 		
 		uniform float t;
 		uniform mat4 uPMatrix;
+		uniform vec3 light;
 		
 		varying lowp vec4 vColor;
 		
 		void main(void) {
 			vec3 pos = aVertexPosition;
-			pos.y = sin(3.164328 * pos.x + 2.1 * t) + sin(2.2583592 * pos.x - t) + sin(3.5912369 * pos.z + t) + sin(1.67123859 * pos.z + t);
-			pos.y = pos.y / 60.0;
+			pos.y = sin(3.164328 * pos.x + 2.1 * t) + sin(2.2583592 * (pos.x + 0.1 * pos.z) - t) + sin(3.5912369 * pos.z + t) + sin(1.67123859 * (pos.z + 0.2 * pos.x) + t) + sin(5.1591 * (4.0 * pos.x + 3.0 * pos.z) / 5.0 - 2.5 * t) + sin(6.28603 * (2.0 * pos.z - pos.x) / 2.7 - 2.5 * t);
+			pos.y = pos.y / 60.0 - 0.1;
 			gl_Position = uPMatrix * vec4(pos, 1.0);
-			vColor = vec4(0.0, 0.0, 0.0, 90.0 * pos.y * pos.y + 0.17);
+			float c = 6.0 * (pos.y + 0.167);
+			vColor = vec4(c, c, c, 30.0 * (pos.y + 0.1) * (pos.y + 0.1) + 0.65);
 		}
 	</script>
   </head>
-
   <body onload="start()">
     <h1>
-		<img src="images/icon_alpha.png" height="150px" style="float:left;padding-left:25%;padding-right:40px;vertical-align:text-bottom;"/>
+		<img src="images/icon_alpha.png" height="150px" style="vertical-align:baseline"/>
 		Pebblefish
 	</h1>
     <canvas id="glcanvas" height="200"></canvas>
-	<p>Lorem ipsum dolor sit amet.</p>
+	<p>A pool of graphics projects. Current works in progress include Footsteps, an animated short, and the Elyptus Trilogy, a VR experience.</p>
   </body>
-
 </html>
